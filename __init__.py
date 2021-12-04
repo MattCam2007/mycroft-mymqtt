@@ -50,7 +50,7 @@ class mymqttskill(MycroftSkill):
             LOGGER.info( "after disconnect")
             self.speak_dialog("cmd.sent")
             LOGGER.info("MQTT Publish: " + dev_name + "/" + cmd_name + "/" + act_name)
-        except:
+        except Exception as inst:
             self.speak_dialog("not.found", {"command": cmd_name, "action": act_name, "module": dev_name})
         
     def stop(self):
