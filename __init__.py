@@ -41,9 +41,11 @@ class mymqttskill(MycroftSkill):
                 self.mqttc.tls_set(self.settings['mqttca']) #/etc/ssl/certs/ca-certificates.crt
             LOGGER.info( "MQTT Connect: " + self.settings['mqtthost'] + ':' + str(self.settings['mqttport']) )
             self.mqttc.connect(self.settings['mqtthost'], self.settings['mqttport'])
-
+            LOGGER.info( "after connect")
             self.mqttc.publish(dev_name + "/" + cmd_name, act_name)
+            LOGGER.info( "after publish")
             self.mqttc.disconnect()
+            LOGGER.info( "after disconnect")
             self.speak_dialog("cmd.sent")
             LOGGER.info("MQTT Publish: " + dev_name + "/" + cmd_name + "/" + act_name)
         except:
