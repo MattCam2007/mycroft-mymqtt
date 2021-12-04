@@ -30,11 +30,17 @@ class mymqttskill(MycroftSkill):
         self.register_intent(intent, self.handle_single_command)
         
     def handle_single_command(self, message):
+        def on_connect(client, userdata, flags, rc):
+            if rc == 0:
+                LOGGER.info("Connected to MQTT Broker!")
+            else:
+                LOGGER.info("Failed to connect, return code %d\n", rc)
         cmd_name = message.data.get("CommandKeyword").replace(' ', '_')
         dev_name = message.data.get("ModuleKeyword").replace(' ', '_')
         act_name = message.data.get("ActionKeyword").replace(' ', '_')
         
         try:
+            self.mqttc.on_connect = on_connect
             LOGGER.info( "MQTT Connect: " + self.settings['mqtthost'] + ':' + str(self.settings['mqttport']) )
             self.mqttc.connect("192.168.2.194", "1883")
             LOGGER.info( "after connect")
