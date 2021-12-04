@@ -42,7 +42,7 @@ class mymqttskill(MycroftSkill):
         #try:
         self.mqttc.on_connect = on_connect
         LOGGER.info( "MQTT Connect: " + self.settings['mqtthost'] + ':' + str(self.settings['mqttport']) )
-        self.mqttc.connect("192.168.2.194", "1883")
+        self.mqttc.connect("192.168.2.194")
         LOGGER.info( "after connect")
         self.mqttc.publish(dev_name + "/" + cmd_name, act_name)
         LOGGER.info( "after publish")
