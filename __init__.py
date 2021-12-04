@@ -15,7 +15,7 @@ class mymqttskill(MycroftSkill):
     def __init__(self):
         super(mymqttskill, self).__init__(name="mymqttskill")
         if ( not self.settings.get('mqtthost') ):
-           self.settings['mqtthost'] = 'localhost'
+           self.settings['mqtthost'] = '192.168.2.194'
         if ( not self.settings.get('mqttport') ):
            self.settings['mqttport'] = '1883'
         self.mqttc = mqtt.Client("MycroftAI")
