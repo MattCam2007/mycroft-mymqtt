@@ -35,12 +35,8 @@ class mymqttskill(MycroftSkill):
         act_name = message.data.get("ActionKeyword").replace(' ', '_')
         
         try:
-            if (self.settings.get('mqttuser')):
-                self.mqttc.username_pw_set(self.settings['mqttuser'],self.setting['mqttpass'])
-            if (self.settings.get('mqttca')):
-                self.mqttc.tls_set(self.settings['mqttca']) #/etc/ssl/certs/ca-certificates.crt
             LOGGER.info( "MQTT Connect: " + self.settings['mqtthost'] + ':' + str(self.settings['mqttport']) )
-            self.mqttc.connect(self.settings['mqtthost'], self.settings['mqttport'])
+            self.mqttc.connect("192.168.2.194", "1883")
             LOGGER.info( "after connect")
             self.mqttc.publish(dev_name + "/" + cmd_name, act_name)
             LOGGER.info( "after publish")
