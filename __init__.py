@@ -44,7 +44,7 @@ class mymqttskill(MycroftSkill):
         LOGGER.info( "MQTT Connect: " + self.settings['mqtthost'] + ':' + str(self.settings['mqttport']) )
         self.mqttc.connect("192.168.2.194")
         LOGGER.info( "after connect")
-        self.mqttc.publish(dev_name + "/" + cmd_name, act_name)
+        self.mqttc.publish("domoticz/in", '{"type":"command","param":"switchlight","idx":"32","switchcmd":"On"}')
         LOGGER.info( "after publish")
         self.mqttc.disconnect()
         LOGGER.info( "after disconnect")
