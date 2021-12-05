@@ -49,7 +49,9 @@ class mymqttskill(MycroftSkill):
         self.mqttc.disconnect()
         LOGGER.info( "after disconnect")
         self.speak_dialog("cmd.sent")
-        LOGGER.info("MQTT Publish: " + dev_name + "/" + cmd_name + "/" + act_name)
+        # type=command&param=switchlight&idx=99&switchcmd=Off
+        LOGGER.info("MQTT Publish: domoticz/in/" + '{"type":"command","param":"switchlight","idx":"32","switchcmd":"On"}')
+        #LOGGER.info("MQTT Publish: " + dev_name + "/" + cmd_name + "/" + act_name)
         #except:
         #    self.speak_dialog("not.found", {"command": cmd_name, "action": act_name, "module": dev_name})
         
