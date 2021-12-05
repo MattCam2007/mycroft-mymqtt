@@ -44,13 +44,13 @@ class mymqttskill(MycroftSkill):
         LOGGER.info( "MQTT Connect: " + self.settings['mqtthost'] + ':' + str(self.settings['mqttport']) )
         self.mqttc.connect("192.168.2.194")
         LOGGER.info( "after connect")
-        self.mqttc.publish("domoticz/in", '{"type":"command","param":"switchlight","idx":"32","switchcmd":"On"}')
+        self.mqttc.publish("domoticz/in", '{"command": "switchlight", "idx": 32, "switchcmd": "Toggle" }')
         LOGGER.info( "after publish")
         self.mqttc.disconnect()
         LOGGER.info( "after disconnect")
         self.speak_dialog("cmd.sent")
         # type=command&param=switchlight&idx=99&switchcmd=Off
-        LOGGER.info("MQTT Publish: domoticz/in/" + '{"type":"command","param":"switchlight","idx":"32","switchcmd":"On"}')
+        LOGGER.info("domoticz/in/" + '{"command": "switchlight", "idx": 32, "switchcmd": "Toggle" }')
         #LOGGER.info("MQTT Publish: " + dev_name + "/" + cmd_name + "/" + act_name)
         #except:
         #    self.speak_dialog("not.found", {"command": cmd_name, "action": act_name, "module": dev_name})
